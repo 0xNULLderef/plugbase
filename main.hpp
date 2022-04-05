@@ -3,6 +3,7 @@
 
 #include "sdk.hpp"
 
+// actual implementation of the INTERFACEVERSION_ISERVERPLUGINCALLBACKS interface
 class Plugin : public IServerPluginCallbacks {
 public:
 	virtual bool Load(CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServerFactory);

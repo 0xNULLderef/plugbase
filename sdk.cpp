@@ -16,6 +16,8 @@ static void* CreateInterfaceInternal(const char* pName, int* pReturnCode) {
 	return nullptr;
 }
 
+// exported function expected to be located inside a plugin
+// it allows for getting the required interface by it's version
 extern "C" void* CreateInterface(const char* pName, int* pReturnCode) {
 	return CreateInterfaceInternal(pName, pReturnCode);
 }

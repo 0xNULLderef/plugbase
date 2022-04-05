@@ -1,8 +1,10 @@
 #ifndef SDK_HPP
 #define SDK_HPP
 
+// this defines the "interface version" the game looks for when loading a plugin, which is a string related to a specific interface/class pair
 #define INTERFACEVERSION_ISERVERPLUGINCALLBACKS "ISERVERPLUGINCALLBACKS002"
 
+// macro to simplify the process of exporting a new interface
 #define EXPOSE_SINGLE_INTERFACE_GLOBALVAR(className, interfaceName, versionName, globalVarName) \
 	static void* __Create##className##interfaceName##_interface() { return static_cast<interfaceName*>(&globalVarName); } \
 	static InterfaceReg __g_Create##className##interfaceName##_reg(__Create##className##interfaceName##_interface, versionName);
@@ -10,6 +12,7 @@
 typedef void*(*CreateInterfaceFn)(const char* pName, int* pReturnCode);
 typedef void*(*InstantiateInterfaceFn)();
 
+// structure to make a linked list of InterfaceReg's able to append to the tail
 struct InterfaceReg {
 	InstantiateInterfaceFn m_CreateFn;
 	const char* m_pName;
@@ -23,6 +26,7 @@ struct InterfaceReg {
 	}
 };
 
+// the interface related to INTERFACEVERSION_ISERVERPLUGINCALLBACKS
 class IServerPluginCallbacks {
 public:
 	virtual bool Load(CreateInterfaceFn interfaceFactory, CreateInterfaceFn gameServerFactory) = 0;

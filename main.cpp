@@ -1,5 +1,6 @@
 #include "main.hpp"
 
+// global instance of class required for EXPOSE_SINGLE_INTERFACE_GLOBALVAR macro
 Plugin plugin;
 EXPOSE_SINGLE_INTERFACE_GLOBALVAR(Plugin, IServerPluginCallbacks, INTERFACEVERSION_ISERVERPLUGINCALLBACKS, plugin);
 
